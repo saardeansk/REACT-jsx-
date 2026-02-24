@@ -1,0 +1,65 @@
+                                                                 simple code for table creation from the user input
+
+import {useState} from 'react';
+export default function formtable(){
+    
+             const [Name,setname]=useState("");
+            const [Regno,setregno]=useState("");
+            const [Science,setscience]=useState("");    
+            const [Physics,setphysics]=useState("");
+            const [Chemistry,setchemistry]=useState("");
+           const Total =(parseInt(Science) || 0) +(parseInt(Physics) || 0) +(parseInt(Chemistry) || 0);
+           const[show,setshow]=useState(false);
+           const handsubmit= (e) =>{
+            e.preventDefault();
+            setshow(true);
+
+           }
+           return(
+             <div >
+                  < form onSubmit={handsubmit}>
+             <h1>Student Details Form</h1>
+            <label htmlFor ="name" >Name :</label>
+            <input id="name" placeholder ="Enter the student name" onChange ={(e) => setname(e.target.value)} type="text"/><br />
+            <label htmlFor ="email" type="text">Email :</label>
+            <input id="email" placeholder ="Enter the student email" type="text"/><br />
+            <label htmlFor ="Reg no" type="number">Reg no:</label>
+            <input id="regno" placeholder ="Enter the registration number" onChange ={(e) => setregno(e.target.value)} type="number"/><br />
+            <h5>enter the marks</h5><br />
+            <label htmlFor ="science" >Science :</label>
+            <input id="science" placeholder ="Enter the marks" onChange ={(e) => setscience(e.target.value)} type="number"/><br />   
+            <label htmlFor ="physics" >Physics</label>
+            <input id="physics" placeholder ="Enter the  marks" onChange ={(e) => setphysics(e.target.value)} type="number"/><br />   
+            <label htmlFor ="chemistry" >Chemistry:</label>
+            <input id="chemistry" placeholder ="Enter the marks" onChange ={(e) => setchemistry(e.target.value)} type="number"/><br />   
+            <button>Submit</button>
+           </form>
+           {
+            show&&(
+         <table>
+             <thead>
+          <tr>
+            <td>Name</td>
+            <td>Reg No</td>
+            <td>Science</td>
+            <td>Physics</td>
+            <td>Chemistry</td>
+            <td>Total</td>
+          </tr>        
+          </thead>
+          <tbody>
+            <tr>
+               <td>{Name}</td> 
+                <td>{Regno}</td>    
+                <td>{Science}</td>
+                <td>{Physics}</td>
+                <td>{Chemistry}</td>
+                <td>{Total}</td>
+                </tr>
+          </tbody>
+        </table>
+        )}
+        </div>
+       
+    );
+}
