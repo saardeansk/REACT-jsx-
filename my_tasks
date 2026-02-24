@@ -1,4 +1,8 @@
-                                                                 simple code for table creation from the user input
+
+
+                          simple code for table creation from the user input
+
+
 
 import {useState} from 'react';
 export default function formtable(){
