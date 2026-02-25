@@ -6,7 +6,6 @@
 
 import {useState} from 'react';
 export default function formtable(){
-    
              const [Name,setname]=useState("");
             const [Regno,setregno]=useState("");
             const [Science,setscience]=useState("");    
