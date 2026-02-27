@@ -8,7 +8,7 @@ export default function RoadmapWallpaper() {
     const timer = setInterval(() => {
       setActiveStage((prev) => (prev < 4 ? prev + 1 : 4));
     }, 500);
-    return () => clearInterval(timer);
+    return () => clearInterval(timer);  
   }, []);
 
   const stages = [
