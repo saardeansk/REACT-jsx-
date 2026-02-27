@@ -1,0 +1,166 @@
+import React, { useEffect, useState } from "react";
+
+export default function RoadmapWallpaper() {
+  const [activeStage, setActiveStage] = useState(0);
+
+  // Simple animation trigger on mount
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStage((prev) => (prev < 4 ? prev + 1 : 4));
+    }, 500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const stages = [
+    {
+      title: "Stage 1 – Foundation",
+      items: ["JavaScript Mastery", "Time & Space Complexity", "50 Easy DSA"],
+      color: "#ff007b",
+    },
+    {
+      title: "Stage 2 – Core DSA",
+      items: ["Arrays & Strings", "Linked List / Stacks", "150 Problems Total"],
+      color: "#00ffd5",
+    },
+    {
+      title: "Stage 3 – Advanced DSA",
+      items: ["Trees & Graphs", "Dynamic Programming", "300 Problems Total"],
+      color: "#ffeb3b",
+    },
+    {
+      title: "Stage 4 – Interview Ready",
+      items: ["Medium & Hard Problems", "Mock Interviews", "Resume + GitHub"],
+      color: "#9c27b0",
+    },
+  ];
+
+  return (
+    <div style={styles.container}>
+      {/* Background Glows */}
+      <div style={styles.glow1}></div>
+      <div style={styles.glow2}></div>
+
+      <div style={styles.content}>
+        <header style={styles.header}>
+          <h1 style={styles.mainTitle}>SATHISH 🚀</h1>
+          <p style={styles.subTitle}>Software Engineer Roadmap 2025–2026</p>
+        </header>
+
+        <div style={styles.roadmapWrapper}>
+          {/* The Central Path Line */}
+          <div style={styles.line}>
+            <div style={{ ...styles.lineProgress, height: `${(activeStage / 4) * 100}%` }}></div>
+          </div>
+
+          {stages.map((stage, index) => (
+            <div
+              key={index}
+              style={{
+                ...styles.nodeContainer,
+                opacity: activeStage >= index + 1 ? 1 : 0,
+                transform: activeStage >= index + 1 ? "translateX(0)" : "translateX(-20px)",
+                transition: "all 0.6s ease-out",
+              }}
+            >
+              <div style={{ ...styles.dot, backgroundColor: stage.color, boxShadow: `0 0 15px ${stage.color}` }}></div>
+              <div style={styles.card}>
+                <h3 style={{ color: stage.color, margin: "0 0 10px 0" }}>{stage.title}</h3>
+                <ul style={styles.list}>
+                  {stage.items.map((item, i) => (
+                    <li key={i} style={styles.listItem}>✔ {item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <footer style={styles.footer}>
+          <h2 style={styles.goalText}>🎯 Goal: Google / Top Product Companies</h2>
+          <p style={styles.motto}>NO ZERO DAYS • CODE DAILY • STAY CONSISTENT</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    minHeight: "100vh",
+    backgroundColor: "#050505",
+    color: "#fff",
+    fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "40px 20px",
+    position: "relative",
+    overflow: "hidden",
+  },
+  glow1: {
+    position: "absolute",
+    top: "-10%",
+    left: "-10%",
+    width: "40%",
+    height: "40%",
+    background: "radial-gradient(circle, rgba(0,255,213,0.15) 0%, rgba(0,0,0,0) 70%)",
+    zIndex: 0,
+  },
+  glow2: {
+    position: "absolute",
+    bottom: "-10%",
+    right: "-10%",
+    width: "50%",
+    height: "50%",
+    background: "radial-gradient(circle, rgba(255,0,123,0.1) 0%, rgba(0,0,0,0) 70%)",
+    zIndex: 0,
+  },
+  content: { zIndex: 1, width: "100%", maxWidth: "600px" },
+  header: { textAlign: "center", marginBottom: "50px" },
+  mainTitle: { fontSize: "3rem", letterSpacing: "5px", margin: 0, textShadow: "0 0 20px rgba(255,255,255,0.3)" },
+  subTitle: { color: "#888", fontSize: "1.1rem", marginTop: "10px" },
+  roadmapWrapper: { position: "relative", paddingLeft: "40px" },
+  line: {
+    position: "absolute",
+    left: "7px",
+    top: "10px",
+    bottom: "10px",
+    width: "4px",
+    backgroundColor: "#222",
+    borderRadius: "2px",
+  },
+  lineProgress: {
+    width: "100%",
+    backgroundColor: "#00ffd5",
+    boxShadow: "0 0 10px #00ffd5",
+    transition: "height 1.5s ease-in-out",
+  },
+  nodeContainer: {
+    display: "flex",
+    alignItems: "flex-start",
+    marginBottom: "40px",
+    position: "relative",
+  },
+  dot: {
+    width: "18px",
+    height: "18px",
+    borderRadius: "50%",
+    position: "absolute",
+    left: "-40px",
+    top: "5px",
+    zIndex: 2,
+  },
+  card: {
+    background: "rgba(255, 255, 255, 0.03)",
+    backdropFilter: "blur(10px)",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    padding: "20px",
+    borderRadius: "15px",
+    width: "100%",
+  },
+  list: { listStyle: "none", padding: 0, margin: 0 },
+  listItem: { fontSize: "0.95rem", color: "#ccc", marginBottom: "5px" },
+  footer: { marginTop: "40px", textAlign: "center" },
+  goalText: { color: "#00ffd5", textShadow: "0 0 10px rgba(0,255,213,0.5)" },
+  motto: { letterSpacing: "2px", fontSize: "0.8rem", color: "#666" },
+};
