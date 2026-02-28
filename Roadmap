@@ -86,7 +86,7 @@ export default function RoadmapWallpaper() {
 
 const styles = {
   container: {
-    minHeight: "100vh",
+    minHeight: "100vh",    
     backgroundColor: "#050505",
     color: "#fff",
     fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
