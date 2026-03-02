@@ -4,7 +4,7 @@ export default function RoadmapWallpaper() {
   const [activeStage, setActiveStage] = useState(0);
 
   // Simple animation trigger on mount  
-  useEffect(() => {
+  useEffect(() => {  
     const timer = setInterval(() => {
       setActiveStage((prev) => (prev < 4 ? prev + 1 : 4));
     }, 500);
